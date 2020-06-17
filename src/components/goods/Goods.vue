@@ -39,7 +39,6 @@ export default {
                 this.$router.push('/home/goods/goodsGroup')
                 break
         }
-     key
     }
   }
 };

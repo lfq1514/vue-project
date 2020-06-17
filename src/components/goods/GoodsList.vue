@@ -115,7 +115,6 @@
 </template>
 <script>
 import xslx from "xlsx";
-
 export default {
   name: "GoodsList",
   data() {
