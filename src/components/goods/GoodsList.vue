@@ -57,6 +57,9 @@
     <el-button type="primary" class="search" @click="exportExcel"
       >表格导出</el-button
     >
+    <el-button type="primary" class="search" @click="importExcel"
+      >数据导入</el-button
+    >
     <el-table
       :data="goodListData"
       @selection-change="selectionChange"
@@ -65,8 +68,6 @@
     >
       <el-table-column type="selection" width="55"> </el-table-column>
       <el-table-column type="index" align="center"> </el-table-column>
-      <el-table-column prop="img" label="商品图片" align="center" width="180">
-      </el-table-column>
       <el-table-column
         prop="shopName"
         label="商品名称"
@@ -150,7 +151,6 @@ export default {
       selectionList: [], //选中的列表项
       goodListData: [
         {
-          img: "",
           shopName: "西瓜",
           serverFee: "0.1",
           saleFee: "10",
@@ -158,7 +158,6 @@ export default {
           createDate: "2020-01-12"
         },
         {
-          img: "",
           shopName: "西瓜",
           serverFee: "0.1",
           saleFee: "10",
@@ -166,15 +165,6 @@ export default {
           createDate: "2020-01-12"
         },
         {
-          img: "",
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          img: "",
           shopName: "西瓜",
           serverFee: "0.1",
           saleFee: "10",
@@ -214,6 +204,9 @@ export default {
        let book = xslx.utils.book_new();
       xslx.utils.book_append_sheet(book, sheet, "sheet1");
       xslx.writeFile(book, `user${new Date().getTime()}.xls`);
+    },
+    importExcel(){
+        this.$router.push('/home/goods/importData')
     }
   }
 };

@@ -35,6 +35,11 @@ const routes = [
             name: 'GoodsList',
             component: () => import(/* webpackChunkName: "about" */ '../components/goods/goodsGroup.vue'),
           },
+          {
+            path: '/home/goods/importData',
+            name: 'importData',
+            component: () => import(/* webpackChunkName: "about" */ '../components/goods/importData.vue'),
+          },
 
 
         ]
