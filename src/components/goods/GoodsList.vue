@@ -60,11 +60,15 @@
     <el-button type="primary" class="search" @click="importExcel"
       >数据导入</el-button
     >
+    <el-button type="primary" class="search" @click="addGoods"
+      >新增数据</el-button
+    >
     <el-table
       :data="goodListData"
       @selection-change="selectionChange"
       border
       style="width: 100%"
+      max-height="350"
     >
       <el-table-column type="selection" width="55"> </el-table-column>
       <el-table-column type="index" align="center"> </el-table-column>
@@ -112,6 +116,43 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="goodListData.length"
+    >
+    </el-pagination>
+    <el-dialog title="新增商品" :visible.sync="dialogFormVisible">
+      <el-form
+        :model="ruleForm"
+        status-icon
+        :rules="rules"
+        ref="ruleForm"
+        label-width="100px"
+        class="demo-ruleForm"
+      >
+        <el-form-item label="商品名称" prop="shopName">
+          <el-input v-model="ruleForm.shopName"></el-input>
+        </el-form-item>
+        <el-form-item label="服务费" prop="serverFee">
+          <el-input v-model="ruleForm.serverFee"></el-input>
+        </el-form-item>
+        <el-form-item label="销售价格" prop="saleFee">
+          <el-input v-model="ruleForm.saleFee"></el-input>
+        </el-form-item>
+        <el-form-item label="商品状态" prop="shopStatus">
+          <el-cascader
+            v-model="ruleForm.shopStatus"
+            :options="options"
+            @change="handleChange"
+          ></el-cascader>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="confirmAdd">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -170,6 +211,136 @@ export default {
           saleFee: "10",
           shopStatus: "在售中",
           createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        },
+        {
+          shopName: "西瓜",
+          serverFee: "0.1",
+          saleFee: "10",
+          shopStatus: "在售中",
+          createDate: "2020-01-12"
+        }
+      ],
+      dialogFormVisible: false,
+      formLabelWidth: "100px",
+      rules: {
+        shopName: [
+          { required: true, message: "请输入商品名称", trigger: "blur" }
+        ],
+        serverFee: [
+          { required: true, message: "请输入服务费", trigger: "blur" }
+        ],
+        saleFee: [
+          { required: true, message: "请输入销售价格", trigger: "blur" }
+        ],
+        shopStatus: [
+          { required: true, message: "请选择商品状态", trigger: "change" }
+        ]
+      },
+      ruleForm: {
+        shopName: "",
+        serverFee: "",
+        saleFee: "",
+        shopStatus: []
+      },
+
+      options: [
+        {
+          value: "zhinan",
+          label: "指南",
+          children: [
+            {
+              value: "shejiyuanze",
+              label: "设计原则",
+              children: [
+                {
+                  value: "yizhi",
+                  label: "一致"
+                },
+                {
+                  value: "fankui",
+                  label: "反馈"
+                },
+                {
+                  value: "xiaolv",
+                  label: "效率"
+                },
+                {
+                  value: "kekong",
+                  label: "可控"
+                }
+              ]
+            },
+            {
+              value: "daohang",
+              label: "导航",
+              children: [
+                {
+                  value: "cexiangdaohang",
+                  label: "侧向导航"
+                },
+                {
+                  value: "dingbudaohang",
+                  label: "顶部导航"
+                }
+              ]
+            }
+          ]
         }
       ]
     };
@@ -197,16 +368,35 @@ export default {
           商品名称: item.shopName,
           服务费率: item.serverFee,
           销售价格: item.saleFee,
-          商品状态:item.shopStatus
+          商品状态: item.shopStatus
         };
       });
-       let sheet = xslx.utils.json_to_sheet(arr)
-       let book = xslx.utils.book_new();
+      let sheet = xslx.utils.json_to_sheet(arr);
+      let book = xslx.utils.book_new();
       xslx.utils.book_append_sheet(book, sheet, "sheet1");
       xslx.writeFile(book, `user${new Date().getTime()}.xls`);
     },
-    importExcel(){
-        this.$router.push('/home/goods/importData')
+    importExcel() {
+      this.$router.push("/home/goods/importData");
+    },
+    addGoods() {
+      this.dialogFormVisible = true;
+    },
+    confirmAdd() {
+      this.$refs["ruleForm"].validate(valid => {
+        if (valid) {
+          setTimeout(() => {
+            this.$refs["ruleForm"].resetFields();
+            this.dialogFormVisible = false;
+          }, 1000);
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    handleChange(e) {
+      console.log(e);
     }
   }
 };

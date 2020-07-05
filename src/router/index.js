@@ -43,7 +43,36 @@ const routes = [
 
 
         ]
-      }
+      },
+      {
+        path: '/home/test',
+        name: 'Test',
+        component: () => import(/* webpackChunkName: "about" */ '../components/test/Demo.vue'),
+      },
+      {
+        path: '/home/chart',
+        name: 'Chart',
+        redirect:"/home/chart/echart",
+        component: () => import(/* webpackChunkName: "about" */ '../components/chart/Chart.vue'),
+        children:[
+          {
+            path: '/home/chart/echart',
+            name: 'Echart',
+            component: () => import(/* webpackChunkName: "about" */ '../components/chart/Echart.vue'),
+          },
+          {
+            path: '/home/chart/canvas',
+            name: 'Canvas',
+            component: () => import(/* webpackChunkName: "about" */ '../components/chart/Canvas.vue'),
+          },
+          {
+            path: '/home/chart/echartMap',
+            name: 'Canvas',
+            component: () => import(/* webpackChunkName: "about" */ '../components/chart/echart-map.vue'),
+          },
+
+        ]
+      },
 
     ]
   },

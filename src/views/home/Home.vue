@@ -5,23 +5,24 @@
       <p class="logout">[退出]</p>
     </el-header>
     <el-container>
-      <el-header> <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
+      <el-header>
+        <el-menu
+          :default-active="activeIndex"
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+          background-color="#545c64"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+        >
+          <el-menu-item index="/home/goods/goodsList">我的商品</el-menu-item>
+          <el-menu-item index="/home/chart">图表</el-menu-item>
+          <el-menu-item index="/home/test">测试</el-menu-item>
+        </el-menu></el-header
       >
-        <el-menu-item index="1">我的商品</el-menu-item>
-        <el-menu-item index="2">充值中心</el-menu-item>
-        <el-menu-item index="3" >我的订单</el-menu-item>
-      </el-menu></el-header>
-  <el-main>
-    <router-view></router-view>
-  </el-main>
-
+      <el-main class="main">
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -34,17 +35,17 @@ export default {
   name: "Home",
   data() {
     return {
-      activeIndex: "1",
-
+      activeIndex: "/home/goods/goodsList",
+      pageList: ["/home/goods/goodsList", "/home/goods/goodsList", "/home/test"]
     };
   },
   components: {
     Goods
   },
   methods: {
-    handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
+    handleSelect(path) {
+      this.$router.push(path);
+    }
   }
 };
 </script>
@@ -55,7 +56,6 @@ export default {
   text-align: center;
   line-height: 60px;
   padding: 0;
-
 }
 .el-container {
   background-color: pink;
@@ -79,10 +79,11 @@ export default {
 }
 .el-menu-demo {
   width: 100%;
-
 }
 ::v-deep .el-main {
-    padding: 0;
+  padding: 0;
 }
-
+.main {
+  height: 100%;
+}
 </style>

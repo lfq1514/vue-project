@@ -1,9 +1,9 @@
 <template>
-  <div class="goodsPage">
-    <el-container class="container">
+  <div class="cartPage">
+    <el-container style="height:100%" class="container">
       <el-aside width="200px">
         <el-menu
-          default-active="/home/goods/goodsList"
+          :default-active="index"
           class="el-menu-vertical-demo"
           @select="handleSelect"
           background-color="#545c64"
@@ -11,7 +11,7 @@
           active-text-color="#ffd04b"
         >
           <el-menu-item
-            v-for="(item,index) in goodsTitleList"
+            v-for="(item, index) in titleList"
             :key="index"
             :index="item.path"
           >
@@ -26,25 +26,38 @@
     </el-container>
   </div>
 </template>
+
 <script>
 export default {
-  name: "Goods",
+  name: "Chart",
   data() {
     return {
-      goodsTitleList: [{ title: "商家列表",path:"/home/goods/goodsList" }, { title: "商家分组",path:'/home/goods/goodsGroup' }]
+      index: "",
+      titleList: [
+        { title: "echart图表", path: "/home/chart/echart" },
+        { title: "cavnas图", path: "/home/chart/canvas" },
+        { title: "map地图", path: "/home/chart/echartMap" }
+      ]
     };
+  },
+
+  created() {
+    //获取当前路由（相当于激活的导航）（解决刷新页面时，当前页面组件与激活导航菜单不一致问题）
+    this.index = this.$router.history.current.path;
   },
   methods: {
     handleSelect(path) {
-      console.log('22222')
-          this.$router.push(path);
-      }
+      this.index = path;
+      this.$router.push(path);
+    }
   }
 };
 </script>
-<style lang="scss" scoped>
-.goodsPage {
-  height: 100%;
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.cartPage {
+  height: 100% !important;
   width: 100%;
   background: skyblue;
 }
