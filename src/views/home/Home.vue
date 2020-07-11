@@ -16,7 +16,7 @@
           active-text-color="#ffd04b"
         >
           <el-menu-item index="/home/goods/goodsList">我的商品</el-menu-item>
-          <el-menu-item index="/home/chart">图表</el-menu-item>
+          <el-menu-item index="/home/chart/echart">图表</el-menu-item>
           <el-menu-item index="/home/test">测试</el-menu-item>
         </el-menu></el-header
       >
@@ -38,6 +38,12 @@ export default {
       activeIndex: "/home/goods/goodsList",
       pageList: ["/home/goods/goodsList", "/home/goods/goodsList", "/home/test"]
     };
+  },
+  created(){
+
+     this.activeIndex = this.$router.history.current.path;
+     console.log(this.$router.history.current.path)
+
   },
   components: {
     Goods

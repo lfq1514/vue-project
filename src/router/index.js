@@ -17,26 +17,26 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    redirect:"/home/goods/goodsList",
+    redirect:"goodsList",
     component: () => import(/* webpackChunkName: "about" */ '../views/home/Home.vue'),
     children: [
       {
-        path: '/home/goods',
+        path: 'goods',
         name: 'Goods',
         component: () => import(/* webpackChunkName: "about" */ '../components/goods/Goods.vue'),
         children:[
           {
-            path: '/home/goods/goodsList',
+            path: 'goodsList',
             name: 'GoodsList',
             component: () => import(/* webpackChunkName: "about" */ '../components/goods/GoodsList.vue'),
           },
           {
-            path: '/home/goods/goodsGroup',
+            path: '\goodsGroup',
             name: 'GoodsList',
             component: () => import(/* webpackChunkName: "about" */ '../components/goods/goodsGroup.vue'),
           },
           {
-            path: '/home/goods/importData',
+            path: 'importData',
             name: 'importData',
             component: () => import(/* webpackChunkName: "about" */ '../components/goods/importData.vue'),
           },
@@ -45,28 +45,28 @@ const routes = [
         ]
       },
       {
-        path: '/home/test',
+        path: 'test',
         name: 'Test',
         component: () => import(/* webpackChunkName: "about" */ '../components/test/Demo.vue'),
       },
       {
-        path: '/home/chart',
+        path: 'chart',
         name: 'Chart',
-        redirect:"/home/chart/echart",
+        redirect:"echart",
         component: () => import(/* webpackChunkName: "about" */ '../components/chart/Chart.vue'),
         children:[
           {
-            path: '/home/chart/echart',
+            path: 'echart',
             name: 'Echart',
             component: () => import(/* webpackChunkName: "about" */ '../components/chart/Echart.vue'),
           },
           {
-            path: '/home/chart/canvas',
+            path: 'canvas',
             name: 'Canvas',
             component: () => import(/* webpackChunkName: "about" */ '../components/chart/Canvas.vue'),
           },
           {
-            path: '/home/chart/echartMap',
+            path: 'echartMap',
             name: 'Canvas',
             component: () => import(/* webpackChunkName: "about" */ '../components/chart/echart-map.vue'),
           },
