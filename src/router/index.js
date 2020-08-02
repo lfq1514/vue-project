@@ -12,33 +12,33 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/login/login.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/login/login.vue')
   },
   {
     path: '/home',
     name: 'Home',
-    redirect:"goodsList",
-    component: () => import(/* webpackChunkName: "about" */ '../views/home/Home.vue'),
+    redirect:"/home/goods/goodsList",
+    component: () => import(/* webpackChunkName: "home" */ '../views/home/Home.vue'),
     children: [
       {
         path: 'goods',
         name: 'Goods',
-        component: () => import(/* webpackChunkName: "about" */ '../components/goods/Goods.vue'),
+        component: () => import(/* webpackChunkName: "home" */ '../components/goods/Goods.vue'),
         children:[
           {
             path: 'goodsList',
             name: 'GoodsList',
-            component: () => import(/* webpackChunkName: "about" */ '../components/goods/GoodsList.vue'),
+            component: () => import(/* webpackChunkName: "home" */ '../components/goods/GoodsList.vue'),
           },
           {
-            path: '\goodsGroup',
+            path: 'goodsGroup',
             name: 'GoodsList',
-            component: () => import(/* webpackChunkName: "about" */ '../components/goods/goodsGroup.vue'),
+            component: () => import(/* webpackChunkName: "home" */ '../components/goods/goodsGroup.vue'),
           },
           {
             path: 'importData',
             name: 'importData',
-            component: () => import(/* webpackChunkName: "about" */ '../components/goods/importData.vue'),
+            component: () => import(/* webpackChunkName: "home" */ '../components/goods/importData.vue'),
           },
 
 
@@ -52,23 +52,23 @@ const routes = [
       {
         path: 'chart',
         name: 'Chart',
-        redirect:"echart",
-        component: () => import(/* webpackChunkName: "about" */ '../components/chart/Chart.vue'),
+        redirect:"/chart/echart",
+        component: () => import(/* webpackChunkName: "chart" */ '../components/chart/Chart.vue'),
         children:[
           {
             path: 'echart',
             name: 'Echart',
-            component: () => import(/* webpackChunkName: "about" */ '../components/chart/Echart.vue'),
+            component: () => import(/* webpackChunkName: "chart" */ '../components/chart/Echart.vue'),
           },
           {
             path: 'canvas',
             name: 'Canvas',
-            component: () => import(/* webpackChunkName: "about" */ '../components/chart/Canvas.vue'),
+            component: () => import(/* webpackChunkName: "chart" */ '../components/chart/Canvas.vue'),
           },
           {
             path: 'echartMap',
             name: 'Canvas',
-            component: () => import(/* webpackChunkName: "about" */ '../components/chart/echart-map.vue'),
+            component: () => import(/* webpackChunkName: "chart" */ '../components/chart/echart-map.vue'),
           },
 
         ]
