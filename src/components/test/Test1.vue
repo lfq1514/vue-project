@@ -21,6 +21,10 @@ export default {
   created(){
       console.log('created')
 
+      let ddd=new Date()
+     let time= this.$moment(ddd).format('YYYY-MM-DD HH:mm:ss')
+     console.log(time)
+
   },
   mounted(){
       console.log('mounted')

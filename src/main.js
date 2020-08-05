@@ -6,7 +6,10 @@ import './plugins/element.js'
 import '@a/css/init.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import moment from 'moment'
+Vue.prototype.$moment = moment
 Vue.use(ElementUI);
+
 
 
 Vue.config.productionTip = false

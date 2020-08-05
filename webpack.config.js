@@ -198,5 +198,8 @@ module.exports={
         }),
         //在打包生成的文件中添加一些说明(如版权声明，文件说明等等)
         new webpack.BannerPlugin('make 2020 by lfq')
-    ]
+    ],
+     externals: {//配置不打包的模块（如已经通过cdn的方式引入，又在文件中通过import方式引入，可以在这里配置，防止被打包进入）（通过cdn引入后就不要再打包相关的依赖包了）
+        moment: 'moment'
+    },
 }
