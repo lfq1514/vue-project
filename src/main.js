@@ -7,6 +7,7 @@ import '@a/css/init.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import moment from 'moment'
+import "./mock/index.js"
 Vue.prototype.$moment = moment
 Vue.use(ElementUI);
 
