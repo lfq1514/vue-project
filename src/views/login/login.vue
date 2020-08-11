@@ -106,16 +106,16 @@ export default {
     login(params) {
       console.log('22')
       this.$router.push('/home')
-      // api.home
-      //   .login()
-      //   .then(res => {
-      //     console.log("---");
-      //     console.log(res);
-      //   })
-      //   .catch(err => {
-      //     console.log("=====");
-      //     console.log(err);
-      //   });
+      api.home
+        .login()
+        .then(res => {
+          console.log("---");
+          console.log(res);
+        })
+        .catch(err => {
+          console.log("=====");
+          console.log(err);
+        });
     },
     //取消注册
     cancel() {

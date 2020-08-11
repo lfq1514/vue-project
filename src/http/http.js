@@ -64,8 +64,6 @@ axios.defaults.validateStatus=status=>{
 *设置响应拦截器
 */
 axios.interceptors.response.use(response=>{
-	console.log('--')
-	console.log(response)
 	return response.data //将响应主体返回（可以配可以不配）
 },error=>{
 	let {response}=error;

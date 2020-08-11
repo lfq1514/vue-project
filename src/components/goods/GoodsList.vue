@@ -134,6 +134,9 @@
         <el-form-item label="商品名称" prop="shopName">
           <el-input v-model="ruleForm.shopName"></el-input>
         </el-form-item>
+        <el-form-item label="商品" p图片rop="shopImg">
+          <el-input v-model="ruleForm.shopImg"></el-input>
+        </el-form-item>
         <el-form-item label="服务费" prop="serverFee">
           <el-input v-model="ruleForm.serverFee"></el-input>
         </el-form-item>
@@ -157,6 +160,7 @@
 </template>
 <script>
 import xslx from "xlsx";
+import api from "@h/api.js";
 export default {
   name: "GoodsList",
   data() {
@@ -193,88 +197,12 @@ export default {
       goodListData: [
         {
           shopName: "西瓜",
+          shopImg:'',
           serverFee: "0.1",
           saleFee: "10",
           shopStatus: "在售中",
           createDate: "2020-01-12"
         },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        },
-        {
-          shopName: "西瓜",
-          serverFee: "0.1",
-          saleFee: "10",
-          shopStatus: "在售中",
-          createDate: "2020-01-12"
-        }
       ],
       dialogFormVisible: false,
       formLabelWidth: "100px",
@@ -344,6 +272,12 @@ export default {
         }
       ]
     };
+  },
+  created(){
+     api.home
+        .getList().then((res)=>{
+          console.log(res)
+        })
   },
   methods: {
     shopcate(e) {
