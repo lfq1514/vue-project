@@ -2,8 +2,8 @@ import axios from "./http"
 function login (){
 	return axios.get('/api/login')
 }
-function getList (){
-	return axios.get('/api/getGoodsList')
+function getList (data){
+	return axios.get('/api/getGoodsList',{params:{start:data.start,limit:data.limit}})
 }
 export default {
 	login,

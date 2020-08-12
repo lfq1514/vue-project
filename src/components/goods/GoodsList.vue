@@ -80,6 +80,17 @@
       >
       </el-table-column>
       <el-table-column
+        prop="shopImg"
+        label="商品图片"
+        align="center"
+        width="180"
+      >
+      <template slot-scope="scope">
+        <img :src="scope.row.shopImg" alt="">
+
+      </template>
+      </el-table-column>
+      <el-table-column
         prop="serverFee"
         label="服务费率"
         align="center"
@@ -116,12 +127,16 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="goodListData.length"
-    >
-    </el-pagination>
+   <el-pagination
+          background
+          layout="sizes,prev, pager, next, total"
+          :current-page="1"
+          :total="total"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="10"
+          @current-change="handleCurrentChange"
+          @size-change="handleSizeChange"
+        />
     <el-dialog title="新增商品" :visible.sync="dialogFormVisible">
       <el-form
         :model="ruleForm"
@@ -133,9 +148,6 @@
       >
         <el-form-item label="商品名称" prop="shopName">
           <el-input v-model="ruleForm.shopName"></el-input>
-        </el-form-item>
-        <el-form-item label="商品" p图片rop="shopImg">
-          <el-input v-model="ruleForm.shopImg"></el-input>
         </el-form-item>
         <el-form-item label="服务费" prop="serverFee">
           <el-input v-model="ruleForm.serverFee"></el-input>
@@ -204,6 +216,7 @@ export default {
           createDate: "2020-01-12"
         },
       ],
+      total:0,
       dialogFormVisible: false,
       formLabelWidth: "100px",
       rules: {
@@ -270,18 +283,30 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      params:{
+        start:0,
+        limit:10
+      }
     };
   },
   created(){
-     api.home
-        .getList().then((res)=>{
-          console.log(res)
-        })
+    this.getList()
+
   },
   methods: {
     shopcate(e) {
       console.log(e);
+    },
+    getList(){
+       api.home
+        .getList(this.params).then((res)=>{
+          console.log('22222')
+          console.log(res)
+          this.total=res.total
+          this.goodListData=res.list
+        })
+
     },
     //选择列表项
     selectionChange(value) {
@@ -329,13 +354,28 @@ export default {
         }
       });
     },
-    handleChange(e) {
+      handleChange(e) {
       console.log(e);
+    },
+     // 当前页发生改变
+    handleCurrentChange(value) {
+      this.params.start = (value - 1) * this.params.limit
+      this.getList()
+    },
+    // 每页显示条数选择时触发(改变分页显示条数时，start从0开始计算)
+   handleSizeChange(value) {
+      this.params.limit = value
+      this.params.start = 0
+      this.getList()
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+img {
+  width:50px;
+  height: 50px;
+}
 .goodsListPage {
   height: 100%;
   background: pink;
